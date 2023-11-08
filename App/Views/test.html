@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    {% for item in products %}
+        {% include "components/card-product.blade.html" %}
+    {% endfor %}
+
+
+    {% for post in products %}
+        <h2>{{ post.name }}</h2>
+    {% endfor %}
+    {% if current_user %}
+        Hello {{ current_user.name }}.
+    {% else %}
+        <a href="/signup/new">Sign up</a> or <a href="/login">log in</a>.
+    {% endif %}
+
+{% endblock %}

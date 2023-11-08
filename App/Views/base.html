@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Graduate phone store">
+    <title>Graduate phone store</title>
+    <link rel="shortcut icon" href="https://d1j8r0kxyu9tj8.cloudfront.net/webs/logo1.jpg">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/toastr.min.css"/>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    {% include "components/header.blade.html" %}
+
+	<div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+    {% include "components/off-canvas-cart.html" %}
+    {% include "components/modal-checkout.html" %}
+    <script type="text/javascript" src="/js/app.js" defer></script>
+    <script type="text/javascript" src="/js/cart.js" defer></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js" defer></script>
+    <script type="text/javascript" src="/js/axios.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/sweet-alert.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+    <script src="/js/cart.js" defer></script>
+
+    {% block footer %}
+    {% endblock %}
+</body>
+</html>

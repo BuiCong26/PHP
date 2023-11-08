@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<div class="mt-5 pt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5 my-4">
+                <h1 class="text-app"><b>Graduate Store</b></h1>
+                <br>
+                <p><b>Graduate Store</b> hệ thống bán lẻ điện thoại uy tín chất lượng dịch vụ tốt tại Hà Nội. Với các dòng
+                    điện thoại mới nhất hiện nay của các thương hiệu Apple, Xiaomi, Samsung, Huawei... Tất cả các sản phẩm do <b>Graduate
+                        Store</b>
+                    bán ra đều được tuân thủ điều kiện bảo hành của nhà cung cấp, hãng sản xuất. Nếu có vấn đề về chất
+                    lượng sản phẩm, <b>Graduate Store</b> cam kết sẽ đền bù bạn gấp đôi </p>
+                <br>
+                  
+                <div class="row d-lg-flex d-none">
+                    <div class="col-lg-6 my-2">
+                        <div class="shadow bg-white rounded-10 h-100 p-4">
+                            <div class="fw-bold fs-5">Bảo hành 1 năm</div>
+                            <div class="">Toàn bộ sản phẩm của shop đều đính kèm gói bảo hành 1 năm hoàn toàn free</div>
+                            <div class="text-center">
+                                <img src="https://png.pngtree.com/png-vector/20190217/ourmid/pngtree-1-year-warranty-vector-template-design-illustration-png-image_555288.jpg" alt="" class="w-75 text-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 my-2">
+                        <div class="shadow bg-white rounded-10 h-100 p-4">
+                            <div class="fw-bold fs-5">500+</div>
+                            <div class="">Sản phẩm từ tất cả các thương hiệu nổi tiếng</div>
+                            <div class="text-center">
+                                <img src="image/all%20trademark.png" alt="" class="w-100 text-center mt-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 position-relative">
+                <div style="padding-bottom: 80%" class="card-img"></div>
+                <img style="z-index: 100; top: 10%" class="scroll-vertical-up-md w-90 position-absolute"
+                     src="/image/phone.png">
+                <img style="z-index: 100; top: 40%" class="scroll-vertical-up-md w-90 position-absolute"
+                     src="/image/favpng_iphone-samsung-galaxy-mobile-phone-accessories-headphones-headset.png">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5 d-flex align-items-center justify-content-between mb-5">
+                <div class="text-start text-bold fs-4 fw-bold">
+                    Sản phẩm nổi bật
+                </div>
+                <a href="/products" class="text-end d-block text-black-50 fs-6">
+                    <span>Xem tất cả sản phẩm</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            {% for item in products %}
+                    {% include "components/card-product.blade.html" %}
+            {%endfor%}
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+    <script>
+        var str = '{{product.detail}}';
+    </script>
+{% endblock %}
+
+
+

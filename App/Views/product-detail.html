@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="{{product.first_image}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{{product.second_image}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{{product.third_image}}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        <div class="col-md-6 mt-4">
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <div class="product-name fs-4 fw-bold">
+                            {{product.name}}    
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <b>{{product.price}}đ</b>
+                </div>
+            <div class="product-description text-gray my-4">
+                {{product.description}}    
+            </div>
+            
+            <div class="fs-5 fw-bold mt-4 mb-2">Màu sắc</div>
+            <div class="btn-group">
+                {% for color in product.color %}
+                    <div class="box-color option" style="background-color: {{color}}"
+                    data-bs-toggle="popover" data-bs-html="true"></div>
+                {% endfor %}
+            </div>
+            {% if product.type == 'phone' %}
+            <div class="fs-5 fw-bold mt-4 mb-2">Thông số kỹ thuật</div>
+            <div class="shadow rounded-3 px-4 py-3">
+                <small class="text-gray">
+                    <p><i class="fa-solid fa-microchip"></i> Ram: {{product.ram}}</p>
+                    <p><i class="fa-solid fa-display"></i> Màn hình: {{product.display}}</p>
+                    <p><i class="fa-solid fa-memory"></i> Bộ nhớ: {{product.memory}}</p>
+                    <p><i class="fa-solid fa-video"></i> Camera: {{product.cam}}</p>
+                </small>
+            </div>
+            {%else%}
+            <div  style="opacity: 0" class="fs-5 fw-bold mt-4 mb-2">Thông số kỹ thuật</div>
+            <div  style="opacity: 0" class="shadow rounded-3 px-4 py-3">
+                <small class="text-gray">
+                    <p><i class="fa-solid fa-microchip"></i> Ram: {{product.ram}}</p>
+                    <p><i class="fa-solid fa-display"></i> Màn hình: {{product.display}}</p>
+                    <p><i class="fa-solid fa-memory"></i> Bộ nhớ: {{product.memory}}</p>
+                    <p><i class="fa-solid fa-video"></i> Camera: {{product.cam}}</p>
+                </small>
+            </div>
+            {%endif%}
+            <div class="mt-5">
+                    <div class="d-flex">
+                        <div data-bs-target="#modalAdvise" data-bs-toggle="modal" class="w-50 btn bg-transparent border-none"><i class="fa-solid fa-phone"></i> Nhận tư vấn trực tiếp</div>
+                        <button onclick="cart.add({{product.id}})" class="btn bg-app btn-app w-50"><i class="fa-solid fa-cart-arrow-down"></i> Thêm vào giỏ hàng ngay</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <div class="fs-4 fw-bold">
+            Thông tin chi tiết sản phẩm
+        </div>
+        <div id="printDetail" class="my-4">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+    <script>
+        var str = '{{product.detail}}';
+    </script>
+{% endblock %}
+
+
+
+
+
+
+

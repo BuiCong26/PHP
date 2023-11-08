@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/manage-header.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/toastr.min.css"/>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div id="demo" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="text-white d-flex p-4">
+                <a href="/"><i class="fa-solid fa-house me-3"></i></a>
+                <h4>Manage</h4>
+            </div>
+            <hr class="text-gray">
+            <div class="d-flex flex-column justify-content-between px-3 pt-2 text-white min-vh-100">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#v-pills-store" type="button" role="tab" aria-controls="v-pills-store" aria-selected="true">Sản phẩm</button>
+                    <button class="nav-link" id="v-pills-order-tab" data-bs-toggle="pill" data-bs-target="#v-pills-order" type="button" role="tab" aria-controls="v-pills-order" aria-selected="false">Hóa đơn</button>
+                </div>
+                <div class="dropdown pb-4">
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">Thêm sản phẩm</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            <div class="d-flex justify-content-between">
+                <button class="btn border-0 outline-0" data-bs-toggle="collapse" data-bs-target="#demo"><i class="fa-solid fa-bars fs-4"></i></button>
+                <div>
+                    <a href="/"><i class="fa-solid fa-house me-2"></i>Trang chủ</a>
+                    <a href="/logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket ms-4"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="tab-content p-4" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-store" role="tabpanel" aria-labelledby="v-pills-store-tab">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="product-tab" data-bs-toggle="tab" data-bs-target="#product" type="button" role="tab" aria-controls="product" aria-selected="true">Sản phẩm</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-5" id="myTabContent">
+                        <div class="tab-pane fade show active" id="product" role="tabpanel" aria-labelledby="product-tab">
+                            <div style="width: 200px" data-bs-toggle="modal" data-bs-target="#modalUploadProduct" class="cursor-pointer bg-gray rounded-3">
+                                <div data-bs-toggle="tooltip" data-bs-target="Thêm sp" class="card-bg-image d-flex align-items-center justify-content-center"
+                                     style="background-image: url('https://endlessicons.com/wp-content/uploads/2012/12/add-icon-614x460.png'); "></div>
+                            </div>
+                            <div class="mt-4">
+                                <h1>Sản phẩm</h1>
+                                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                    <div class="container-fluid">
+                                        <a class="navbar-brand" href="#">Bộ lọc</a>
+                                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+                                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Loại
+                                                    </a>
+                                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <li><a class="dropdown-item" href="?type=phone">Điện thoại</a></li>
+                                                        <li><a class="dropdown-item" href="?type=accessory">Phụ kiện</a></li>
+                                                    </ul>
+                                                </li>
+                                               
+                                            </ul>
+                                            <form action="/manage" method="get" class="d-flex">
+                                                <input name="name" class="form-control me-2" type="search" placeholder="Tìm kiếm theo tên">
+                                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <div>
+                                    <table class="table">
+                                        <tr>
+                                            <th>Hình đại diện</th>
+                                            <th>Tên SP</th>
+                                            <th>Giá</th>
+                                            <th>Trạng thái</th>
+                                            <th><i class="fa-solid fa-gear"></i></th>
+                                        </tr>
+                                        {% for item in products %}
+                                        <tr>
+                                            <td><img style="width: 100px" src="{{item.first_image}}" alt=""></td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.price}}d</td>
+                                            <td>
+                                                {% if item.status=='published' %}
+                                                    <i class="fas fa-eye text-success"></i>
+                                                {% else %}
+                                                    <i class="fas fa-eye-slash text-danger"></i>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <button data-bs-toggle="modal" data-bs-target="#modalUploadProduct" onclick="product.edit({{item.id}})" class="btn bg-gray btn-sm text-black"><i class="fas fa-edit"></i></button>
+                                                <button onclick="confirmDelete(undefined, function(){product.remove({{item.id}})})" class="btn bg-danger btn-sm text-white"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
+                    <div class="">
+                        <form action="/status-order" method="get" class="w-100 d-flex justify-content-center my-5">
+                            <input name="phone" class="form-control mt-5" style="max-width: 800px; display: unset;" type="text" placeholder="Nhập số điện thoại để tìm kiếm">
+                        </form>
+                    </div>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <th>Mã HĐ</th>
+                            <th>SĐT khách hàng</th>
+                            <th>Sản phẩm</th>
+                            <th>Trạng thái</th>
+                            <th>Thời gian đặt</th>
+                            <th></th>
+                        </tr>
+                        {% for item in orders %}
+                                        <tr>
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.phone}}</td>
+                                            <td> <a class="fw-bold" href="/products/detail?id={{item.product.id}}">{{item.product.name}}</a></td>
+                                            <td>
+                                                {% if item.status=='success' %}
+                                                    <span class="text-success">Đã hoàn thành</span>
+                                                {% endif %}
+                                                {% if item.status=='pending' or item.status=='' %}
+                                                    <span class="text-warning">Đang chờ</span>
+                                                {% endif %}
+                                                {% if item.status=='cancel' %}
+                                                    <span class="text-error">Đã hủy</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {{item.created_at}}
+                                            </td>
+                                        </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "components/modal-upload-product.html" %}
+</body>
+
+<script type="text/javascript" src="/js/app.js" defer></script>
+<script type="text/javascript" src="/js/axios.min.js"></script>
+<script type="text/javascript" src="/js/jquery.slim.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/sweet-alert.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script>
+    $(function(){
+        initDropdownSelect(function(self){
+            const box = $(self).closest(".dropdown");
+            const input = $(box).find('input:hidden');
+            const data = $(self).data('type');
+            console.log(data)
+            $(input).val(data)
+        })
+    })
+    function showImageFromUrl(e){
+        const self = $(e.currentTarget);
+        const print = $(self).closest('.box').find('print')[0];
+        $(print).html(`<img src="${self.val()}" class='w-100'>`)
+    }
+    const product = {
+        validate: (data)=>{
+            let valid = true;
+            console.log($("#formUploadProduct .required").length)
+            $.each($("#formUploadProduct .required"), function (){
+                if($(this).val() == "" || $(this).val() == null){
+                    $(this).focus();
+                    valid = false;
+                }
+            })
+            if(data.typeProduct == "" || data.status == ""){
+                quickToastMixin('warning','Hãy chọn trạng thái sản phẩm')
+                valid = false;
+            }
+            return valid
+        },
+        getData: ()=>{
+            //dung ham serializeArray để lấy tất cả data của input theo trường name của chúng trong formUploadProduct
+            var data = $('#formUploadProduct').serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+
+            //type
+            data.type = $("#productType").data('type');
+            return data;
+        },
+
+        create: ()=>{
+            const data = product.getData();
+            console.log(data)
+            const validate = product.validate(data);
+            if (!validate){
+                quickToastMixin('error','Vui lòng không bỏ trống các trường được đánh dấu')
+                return false;
+            }
+        },
+        fetch:(id,callback)=>{
+            axios.get(`/products/fetch?id=${id}`)
+            .then((r)=>{
+                console.log(r)
+                callback(r.data)
+            })
+            .catch(e=>{
+
+            })
+        },
+        edit: (id)=>{
+            const data = product.fetch(id, function (data){
+                product.settingModalEdit(data)
+            });
+        },
+        settingModalEdit: (d)=>{
+            console.log(d.memory)
+            $('#formUploadProduct').attr('action', '/products/update?id='+d.id);
+            $("formUploadProduct").on('hidden.bs.modal', function(){
+                $('#formUploadProduct').attr('action', '/products/create');
+            })
+            const f = document.getElementById("formUploadProduct");
+            f.first_image.value = d.first_image;
+            f.second_image.value = d.second_image??"";
+            f.third_image.value = d.third_image ?? "";
+            f.name.value = d.name??"";
+            f.status.value = d.status??"";
+            f.typeProduct.value = d.typeProduct??"";
+            f.description.value = d.description??"";
+            f.price.value = d.price??"";
+            f.memory.value = d.memory??"";
+            f.ram.value = d.ram??"";
+            f.display.value = d.display??"";
+            f.cam.value = d.cam??"";
+            f.color.value = d.color??"";
+        },
+        remove: (id)=>{
+            location.href = '/products/delete?id=' + id;
+        }
+    }
+
+    const productCategory = {
+        getData:()=>{
+            var data = $('#formUploadProductCategory').serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            data.trademark_id = $("#trademarkProduct").data('value')
+            return data
+        },
+        create: ()=>{
+            const data = productCategory.getData();
+            console.log(data)
+            axios.post(`/api/auth-web/createCategory`,data)
+            .then(r=>{
+                console.log(r.data)
+            })
+            .catch(e=>{
+                quickToastMixin('error','loi')
+            })
+        }
+    }
+
+
+    // $(function(){
+    //     const alert = {{ request.session.name }}
+    //     if(status){
+    //         quickToastMixin('success','Đã tạo sản phẩm')
+    //     }
+    // })
+</script>
+</html>

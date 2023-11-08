@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="container-fluid d-md-block px-0">
+                    <div class="fs-4 fw-bold d-md-block d-none">Bộ lọc</div>
+                    <div class="fs-4 fw-bold d-block d-md-none">Danh sách sản phâm</div>
+                    <button class="navbar-toggler border-0 outline-0" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navBarFilter" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa-solid fa-sliders"></i>
+                    </button>
+                    <div class="collapse navbar-collapse d-md-block" id="navBarFilter">
+                        <div class="my-4">
+                            <div class="text-black fw-bold mb-2">Danh sách</div>
+                            <div class="group">
+                                <ul class="list-group list-no-border">
+                                    <li class="ps-0 my-2"><a class="text-dark" href="/products">Điện thoại</a>
+                                    </li>
+                                    <li class="ps-0 my-2"><a class="text-dark" href="/products?type=accessory">Phụ kiện</a>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <div class="col-md-9">
+            <div class="mb-4 d-flex justify-content-between">
+                <div class="fw-bold d-md-block d-none fs-4">Danh sách sản phẩm</div>
+
+            </div>
+            <div class="row">
+                {% for item in data.products %}
+                    {% include "components/card-product.blade.html" %}
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+    <script>
+        var str = '{{product.detail}}';
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
+

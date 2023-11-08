@@ -1,0 +1,57 @@
+
+<div id="header" class="container-fluid fixed-top bg-white p-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="/">
+                        <img class="rounded logo-md zoom" loading="lazy"
+                             src="/image/logo.png">
+                    </a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/products">Sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/status-order">Tra cứu hoá đơn</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/manage">Quản lý</a>
+                            </li>
+                        </ul>
+                        <ul id="" class="nav navbar-nav navbar-right d-flex">
+                            <li onclick="cart.show()" class="nav-item cursor-pointer cart-shopping"
+                                data-bs-toggle="offcanvas" data-bs-target="#canvasCart">
+                                <small>
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span class="badge badge-numb-product rounded-pill bg-danger ms-1">0</span>
+                                </small>
+                            </li>
+                            {% if current_user %}
+                                <li class="nav-item cursor-pointer">
+                                    <div class="dropdown">
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" href="/manage">Trang quản trị</a></li>
+                                            <li><a class="dropdown-item" href="/product/create">Thêm sản phẩm</a></li>
+                                            <li><a class="dropdown-item" href="/manage">Quản lý sản phẩm</a></li>
+                                            <li><a href="/logout" class="dropdown-item" href="#">Đăng xuất</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

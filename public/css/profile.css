@@ -1,0 +1,97 @@
+.gradient-card {
+    border-radius: 10px;
+    color: white !important;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.gradient-card-title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.gradient-card-content {
+    padding: 20px;
+}
+
+.course-container{
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.course-container:hover{
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.course-infor {
+    line-height: 16px;
+}
+
+.course-image {
+    cursor: pointer;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 70%;
+    border-radius: 10px;
+    position: relative;
+    transition: all .3s;
+
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .05);
+
+}
+
+.course-image:hover {
+    box-shadow: 0 15px 40px -2px rgba(0, 0, 0, .32)
+}
+
+
+.course-add-image {
+    width: 100%;
+    margin-top: -70%;
+    transition: all .2s ease-in-out;
+    position: relative;
+}
+
+.course-add-image:hover {
+    transform: scale(1.05);
+}
+
+
+.course-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.course-description {
+    font-size: 14px;
+}
+
+.course-description span {
+    font-size: 14px;
+}
+
+.progress {
+    margin-top: -10px;
+    height: 7px;
+    width: 100px;
+    background-color: #c3c3c3;
+}
+
+.progress-full-width {
+    width: 100% !important;
+}
+
+.play-btn-wrap {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}

@@ -1,0 +1,18 @@
+<div class="col-md-3 col-sm-4 my-4">
+    <a href="/products/detail?id={{item.id}}">
+        <div class="product">
+            <img class="zoom w-100 mb-4"
+                 src="{{item.first_image}}"
+                 alt="">
+            <div class="fs-5 fw-bold limit-2-line" style="min-height:60px">{{item.name}}</div>
+            <p style="min-height: 100px" class="text-gray limit-3-line my-4" data-bs-toggle="tooltip"
+               title=" {{item.description}}">
+               {{item.description}}
+            </p>
+        </div>
+    </a>
+    <button onclick="cart.add({{item.id}})" type="button" class="btn btn-price w-100 text-white mt-2">
+        <i class="fa-solid fa-cart-shopping me-2"></i>
+        <span>{{item.price}} đ</span>
+    </button>
+</div>

@@ -1,0 +1,54 @@
+    {% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+{{ request.session.action }}
+<div class="container mt-5 pt-5">
+    <div style="height: 80vh !important;" class="d-flex justify-content-between w-100">
+        <form method="post" action="/login" name="form-login" class="w-50 m-auto shadow rounded-3 p-5" onsubmit="return login()">
+            <h1 class=" text-center mb-5 text-app">Đăng nhập vào trang quản trị <br> Graduate Store</h1>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label text-gray">Email</label>
+                <input name="email" type="email" class="form-control" id="email" placeholder="Tài khoản" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label text-gray">Mật khẩu</label>
+                <input name="pwd" type="password" class="form-control" id="pwd" placeholder="Mật khẩu">
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary btn-app bg-app">Đăng nhập</button>
+            </div>
+        
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script>
+    var res = '{{action}}';
+
+    function login(){
+        if($("#pwd").val() == "" || $("#email").val() == ""){
+            quickToastMixin('error','Vui lòng điền đầy đủ email và mật khẩu')
+            return false
+        }
+    }
+    $(function(){
+        if(res && res.length){
+            if(res == 'loginSuccess'){
+            quickToastMixin('success', 'Đăng nhập thành công');
+            setTimeout(function(){
+                location.href = 'products/manage'
+            },1000)
+        } else{
+            quickToastMixin('error', 'Tài khoản hoặc mật khẩu không đúng')
+        }
+        }
+    })
+</script>
+{% endblock %}
+
+
+
+
+

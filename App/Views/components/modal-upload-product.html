@@ -1,0 +1,102 @@
+<div class="modal fade" id="modalUploadProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Đăng sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/products/create" id="formUploadProduct" onsubmit="return product.create()">
+                    <label for="productImage">Hình ảnh</label>
+                    <div class="px-4">
+                        <input name="first_image" class="form-control required my-2" type="text" placeholder="Hình ảnh đại diện *">
+                        <input name="second_image" class="form-control my-2" type="text" placeholder="Hình ảnh minh họa">
+                        <input name="third_image" class="form-control my-2" type="text" placeholder="Hình ảnh minh họa">
+                    </div>
+                    <div class="form-group">
+                        <label>Tên sản phẩm <span class="text-danger">*</span></label>
+                        <input name="name" class="form-control required my-2" type="text" placeholder="Tên sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea name="description" class="form-control my-2" cols="3" type="text" placeholder="Mô tả"></textarea>
+                    </div>
+            
+                    <div class="form-group">
+                        <div class="mb-4 row">
+                            <div class="col-12 col-lg-5">
+                                <label for="exampleFormControlTextarea1" class="form-label">Giá sản phẩm  <span class="text-danger">*</span></label>
+                                <div class="input-group mb-3">
+                                    <input data-type="price" name="price" type="number" class="form-control required" placeholder="Đơn vị: VND">
+                                    <span class="input-group-text">VND</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group my-4">
+                        <lable>Chọn loại <span class="text-danger">*</span></lable>
+                        <div class="dropdown dropdown-select">
+                            <input class="input-hidden" name="typeProduct" type="hidden" value="">  
+                            <button id="productType" data-type="" class="dropdown-toggle btn w-100 text-start d-flex justify-content-between rounded-20 bg-gray border-0 p-2 px-3"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Chọn trạng thái
+                            </button>
+                            <ul class="dropdown-menu rounded-10 shadow transition-0 border-0 w-100">
+                                <li><a data-type="phone" class="dropdown-item mx-2 px-4 py-2 rounded-10 w-auto">Điện thoại</a></li>
+                                <li><a data-type="accessory" class="dropdown-item mx-2 px-4 py-2 rounded-10 w-auto">Phụ kiện</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group my-4">
+                        <lable>Chọn trạng thái <span class="text-danger">*</span></lable>
+                        <div class="dropdown dropdown-select">
+                        <input class="input-hidden" name="status" type="hidden">       
+                            <button id="productStatus"  data-type="" class="dropdown-toggle btn w-100 text-start d-flex justify-content-between rounded-20 bg-gray border-0 p-2 px-3"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Chọn trạng thái
+                            </button>
+                            <ul class="dropdown-menu rounded-10 shadow transition-0 border-0 w-100">
+                                <li><a data-type="published" class="dropdown-item mx-2 px-4 py-2 rounded-10 w-auto">published</a></li>
+                                <li><a data-type="pending" class="dropdown-item mx-2 px-4 py-2 rounded-10 w-auto">pending</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <label for="">Thông số</label>
+                    <div class="form-group d-flex justify-content-center">
+                        <table class="table border-0 table-borderless" style="width: 300px">
+                            <tr>
+                                <td>Bộ nhớ: </td>
+                                <td><input name="memory" data-type="memory" class="float-end" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>Ram: </td>
+                                <td><input name="ram" data-type="ram" class="float-end product-item" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-nowrap">Màn hình: </td>
+                                <td><input name="display" data-type="display" class="float-end product-item" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>Camera: </td>
+                                <td><input name="cam" data-type="cam" class="float-end product-item" type="text"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <label for="">Màu sắc</label>
+                    <div class="form-group">
+                        <div id="eachColor">
+                            <div class="px-4 product-item" data-type="color">
+                                <input data-type="color" name="color" class="name color form-control my-2" type="text" placeholder="Ngăn cách nhau bởi dấu phẩy">
+                            </div>
+                        </div>
+                    </div>
+                   <div class="text-end mt-4">
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                       <button onclick="product.create()" type="submit" name="submit" class="btn btn-primary">Save changes</button>
+                   </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

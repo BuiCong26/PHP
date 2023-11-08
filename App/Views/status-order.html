@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5 pt-5 mx-auto text-center">
+        <form action="/status-order" method="get" >
+            <input name="phone" class="form-control mt-5" style="max-width: 800px; display: unset;" type="text" placeholder="Nhập số điện thoại để tìm kiếm">
+        </form>
+        <div class="fs-4 fw-bold mt-5">Các sản phẩm đã đặt</div>
+        <div>
+            <table class="table">
+                <tr>
+                    <th>Tên khách</th>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Địa chỉ nhận</th>
+                    <th>Trạng thái</th>
+                    <th>Thời gian đặt</th>
+                </tr>
+                {%for item in orders %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td><a href="/products/detail?id={{item.product.id}}" class="text-limit fw-bold" data-bs-toggle="tooltip" title="{{item.product.name}}">{{item.product.name}}</a></td>
+                    <td>{{item.numb}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.address}}</td>  
+                    <td>
+                        {% if item.status=='success' %}
+                            <span class="text-success">Đã hoàn thành</span>
+                        {% endif %}
+                        {% if item.status=='pending' or item.status=='' %}
+                            <span class="text-warning">Đang xử lý</span>
+                        {% endif %}
+                        {% if item.status=='cancel' %}
+                            <span class="text-error">Đã hủy</span>
+                        {% endif %}
+                    </td> 
+                    <th>{{item.created_at}}</th>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    <script>
+        var str = '{{product.detail}}';
+    </script>
+{% endblock %}
+
+
+
+
+
+
+

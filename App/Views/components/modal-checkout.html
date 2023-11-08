@@ -1,0 +1,33 @@
+<div class="modal fade" id="modalCheckout" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nhập thông tin của bạn</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                 <form id="formCheckout" name="formCheckout" action="/orders/create" method="post">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Tên</label>
+                        <input name="name" type="text" class="form-control" required>
+                        <div class="form-text">Nhập đúng tên của bạn để thuận lợi cho việc đặt hàng</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Số điện thoại</label>
+                        <input  name="phone" type="text" class="form-control" required>
+                        <div class="form-text">Nhập đúng số điện thoại</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Địa chỉ nhận hàng</label>
+                        <input name="address" type="text" class="form-control" required>
+                        <div class="form-text">Vui lòng nhập chi tiết địa chỉ nhận hàng của bạn</div>
+                    </div>
+                    <div class="text-end ">
+                        <button type="submit" class="btn bg-app rounded-3">Hoàn tất</button>
+                    </div>
+                    <input id="productItemCheckout" name="item" type="hidden">
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>
